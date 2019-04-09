@@ -3,6 +3,11 @@ dwm - dynamic window manager
 dwm is an extremely fast, small, and dynamic window manager for X.
 
 
+My patches
+----------
+look into patches dir
+
+
 Requirements
 ------------
 In order to build dwm you need the Xlib header files.
@@ -10,7 +15,7 @@ In order to build dwm you need the Xlib header files.
 
 Installation
 ------------
-Edit config.mk to match your local setup (dwm is installed into
+Edit config.mk to match your local setup (e.g. comment OpenBSD part) (dwm is installed into
 the /usr/local namespace by default).
 
 Afterwards enter the following command to build and install dwm (if
