@@ -66,6 +66,7 @@ static const char *voldown[]  = { "mixerctl", "outputs.master=-12", NULL };
 static const char *lightup[]  = { "xbacklight", "-inc", "10", NULL };
 static const char *lightdown[]  = { "xbacklight", "-dec", "10", NULL };
 
+#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
