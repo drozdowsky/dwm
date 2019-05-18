@@ -59,18 +59,20 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_burgundy, "-sf", col_gray4, NULL };
+/* git://drozdowsky/rc-files/bin/term */
+static const char *tabbedcmd[] = { "tabbed", "-d", "-c", "-r", "1", "stmux", "''", NULL };
 static const char *termcmd[]  = { "st", NULL };
-
-static const char *volup[]  = { "mixerctl", "outputs.master=+12", NULL };
-static const char *voldown[]  = { "mixerctl", "outputs.master=-12", NULL };
-static const char *lightup[]  = { "xbacklight", "-inc", "10", NULL };
-static const char *lightdown[]  = { "xbacklight", "-dec", "10", NULL };
+static const char *volup[] =   { "sh", "-c", "~/bin/vol -inc 5", NULL };
+static const char *voldown[] = { "sh", "-c", "~/bin/vol -dec 5", NULL };
+static const char *lightup[]  = { "sh", "-c", "~/bin/bright 10", NULL };
+static const char *lightdown[]  = { "sh", "-c", "~/bin/bright -10", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = tabbedcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -98,6 +100,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F9,     spawn,          {.v = voldown } },
 	{ MODKEY,                       XK_F7,     spawn,          {.v = lightdown } },
 	{ MODKEY,                       XK_F8,     spawn,          {.v = lightup } },
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -130,5 +133,5 @@ static Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+    { ClkRootWin,           0,              Button3,        spawn,          SHCMD("~/bin/x9term") },
 };
-
