@@ -28,6 +28,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Wfica",    "Wfica",    NULL,       0,            0,            2 },
 	//{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -62,6 +63,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 /* git://drozdowsky/rc-files/bin/term */
 static const char *tabbedcmd[] = { "tabbed", "-d", "-c", "-r", "1", "stmux", "''", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *lockcmd[]  = { "slock", NULL };
 static const char *volup[] =   { "sh", "-c", "~/bin/vol -inc 5", NULL };
 static const char *voldown[] = { "sh", "-c", "~/bin/vol -dec 5", NULL };
 static const char *lightup[]  = { "sh", "-c", "~/bin/bright 10", NULL };
@@ -90,16 +92,22 @@ static Key keys[] = {
 	{ MODKEY|ALTKEY,                XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ALTKEY,                XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_h,      focusmon,       {.i = +1 } },
-	{ MODKEY,                       XK_l,	   focusmon,       {.i = -1 } },
-	{ MODKEY|ALTKEY,                XK_h,  	   tagmon,         {.i = +1 } },
-	{ MODKEY|ALTKEY,                XK_l,      tagmon,         {.i = -1 } },
+	{ MODKEY,                       XK_h,      focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_l,	   focusmon,       {.i = +1 } },
+	{ MODKEY|ALTKEY,                XK_h,  	   tagmon,         {.i = -1 } },
+	{ MODKEY|ALTKEY,                XK_l,      tagmon,         {.i = +1 } },
 	{ MODKEY|ALTKEY,                XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ALTKEY,                XK_k,      movestack,      {.i = -1 } },
+	{ MODKEY,                       XK_g,      spawn,          {.v = lockcmd } },
+    /* Volume and Brightness, more in git://drozdowsky/rc-files/bin     */
 	{ MODKEY,                       XK_F10,    spawn,          {.v = volup } },
 	{ MODKEY,                       XK_F9,     spawn,          {.v = voldown } },
 	{ MODKEY,                       XK_F7,     spawn,          {.v = lightdown } },
 	{ MODKEY,                       XK_F8,     spawn,          {.v = lightup } },
+	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,  {.v = volup } },
+	{ 0,                            XF86XK_AudioLowerVolume,   spawn,  {.v = voldown } },
+	{ 0,                            XF86XK_MonBrightnessDown,  spawn,  {.v = lightdown } },
+	{ 0,                            XF86XK_MonBrightnessUp,    spawn,  {.v = lightup } },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
