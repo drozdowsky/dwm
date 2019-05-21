@@ -63,7 +63,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 /* git://drozdowsky/rc-files/bin/term */
 static const char *tabbedcmd[] = { "tabbed", "-d", "-c", "-r", "1", "stmux", "''", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *lockcmd[]  = { "slock", NULL };
+static const char *lockcmd[]  = { "mlock", NULL };
 static const char *volup[] =   { "sh", "-c", "~/bin/vol -inc 5", NULL };
 static const char *voldown[] = { "sh", "-c", "~/bin/vol -dec 5", NULL };
 static const char *lightup[]  = { "sh", "-c", "~/bin/bright 10", NULL };
