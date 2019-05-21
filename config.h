@@ -69,7 +69,6 @@ static const char *voldown[] = { "sh", "-c", "~/bin/vol -dec 5", NULL };
 static const char *lightup[]  = { "sh", "-c", "~/bin/bright 10", NULL };
 static const char *lightdown[]  = { "sh", "-c", "~/bin/bright -10", NULL };
 
-#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -82,7 +81,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_e,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_comma,  setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_period, setmfact,       {.f = +0.05} },
-	{ MODKEY|ALTKEY,                XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_s,      zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[0]} },
@@ -96,8 +95,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,	   focusmon,       {.i = +1 } },
 	{ MODKEY|ALTKEY,                XK_h,  	   tagmon,         {.i = -1 } },
 	{ MODKEY|ALTKEY,                XK_l,      tagmon,         {.i = +1 } },
-	{ MODKEY|ALTKEY,                XK_j,      movestack,      {.i = +1 } },
-	{ MODKEY|ALTKEY,                XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_g,      spawn,          {.v = lockcmd } },
     /* Volume and Brightness, more in git://drozdowsky/rc-files/bin     */
 	{ MODKEY,                       XK_F10,    spawn,          {.v = volup } },
