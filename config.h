@@ -64,10 +64,10 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *tabbedcmd[] = { "tabbed", "-d", "-c", "-r", "1", "stmux", "''", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "mlock", NULL };
-static const char *volup[] =   { "sh", "-c", "~/bin/vol -inc 5", NULL };
-static const char *voldown[] = { "sh", "-c", "~/bin/vol -dec 5", NULL };
-static const char *lightup[]  = { "sh", "-c", "~/bin/bright 10", NULL };
-static const char *lightdown[]  = { "sh", "-c", "~/bin/bright -10", NULL };
+static const char *volup[] =   { "vol", "-inc", "5", NULL };
+static const char *voldown[] = { "vol", "-dec", "5", NULL };
+static const char *lightup[]  = { "bright", "10", NULL };
+static const char *lightdown[]  = { "bright", "-10", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -138,5 +138,5 @@ static Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-    { ClkRootWin,           0,              Button3,        spawn,          SHCMD("~/bin/x9term") },
+    { ClkRootWin,           0,              Button3,        spawn,          SHCMD("~/.local/bin/x9term") },
 };
